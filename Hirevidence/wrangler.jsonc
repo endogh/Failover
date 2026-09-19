@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "hirevidence-failover",                       // BEDA
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none",
+    "run_worker_first": true
+  },
+  "routes": [                                            // BEDA
+    { "pattern": "hirevidence.com/*", "zone_name": "hirevidence.com" },
+    { "pattern": "www.hirevidence.com/*", "zone_name": "hirevidence.com" }
+  ],
+  "vars": { "SITE_NAME": "Hirevidence", "ORIGIN_TIMEOUT_MS": "8000", "DEBUG": "true" },  // BEDA
+  "observability": { "enabled": true }
+}

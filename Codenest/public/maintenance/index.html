@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codenest.id — Sedang Maintenance</title>
+<style>
+  /* ===== Reset dasar ===== */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg-dark: #0b0f1a;
+    --bg-darker: #060811;
+    --accent: #6c5ce7;
+    --accent-2: #00d4ff;
+    --text-light: #f5f6fa;
+    --text-dim: #9aa4b2;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    background: radial-gradient(circle at 20% 20%, #131a2b 0%, var(--bg-dark) 45%, var(--bg-darker) 100%);
+    color: var(--text-light);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  /* ===== Container utama, di-center vertikal & horizontal ===== */
+  .wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    position: relative;
+  }
+
+  /* ===== Partikel bintang di background (dekorasi) ===== */
+  .stars {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.9; transform: scale(1.4); }
+  }
+
+  /* ===== Kartu konten ===== */
+  .card {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 48px 40px;
+    max-width: 720px;
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  h1 {
+    font-size: 26px;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  p {
+    color: var(--text-dim);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  .domain {
+    color: var(--text-light);
+    font-weight: 600;
+  }
+
+  /* ===== Progress bar animasi indeterminate ===== */
+  .progress-track {
+    width: 100%;
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 22px;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 40%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    animation: slide 1.6s ease-in-out infinite;
+  }
+  @keyframes slide {
+    0% { transform: translateX(-100%); }
+    50% { transform: translateX(80%); }
+    100% { transform: translateX(250%); }
+  }
+
+  /* ===== Ilustrasi kucing nyangkut di kabel ===== */
+  .cat-illust {
+    margin: 0 auto 20px auto;
+    max-width: 220px;
+    position: relative;
+    cursor: default;
+  }
+  .cat-illust img {
+    width: 100%;
+    margin-bottom: 20px;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+  }
+  .cat-illust::after {
+    content: "art by raiggi (99designs.com)";
+    position: absolute;
+    bottom: -28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: rgba(255,255,255,0.1);
+    color: var(--text-dim);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .cat-illust:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .quote-box {
+    margin: 4px 0 18px 0;
+    padding: 14px 16px;
+    background: rgba(255,255,255,0.05);
+    border-left: 3px solid var(--accent-2);
+    border-radius: 8px;
+    text-align: left;
+  }
+  .quote-box .quote-main {
+    font-style: italic;
+    color: var(--text-light);
+    font-size: 14.5px;
+    margin-bottom: 6px;
+  }
+  .quote-box .quote-sub {
+    color: var(--text-dim);
+    font-size: 13.5px;
+    margin: 0;
+  }
+
+  /* ===== Dot titik-titik "sedang bekerja" ===== */
+  .dots span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 3px;
+    background: var(--accent-2);
+    border-radius: 50%;
+    animation: bounce 1.2s infinite ease-in-out;
+  }
+  .dots span:nth-child(2) { animation-delay: 0.2s; }
+  .dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes bounce {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40% { transform: translateY(-6px); opacity: 1; }
+  }
+
+  .footer-note {
+    margin-top: 26px;
+    font-size: 12px;
+    color: #5a6270;
+  }
+
+  @media (max-width: 480px) {
+    .card { padding: 34px 22px; max-height: calc(100vh - 16px); }
+    h1 { font-size: 21px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <!-- Background bintang, dibuat otomatis via JS di bawah -->
+    <div class="stars" id="stars"></div>
+
+    <div class="card">
+
+      <h1>Codenest.id sedang dalam maintenance</h1>
+
+      <!-- Ilustrasi: kucing nyangkut di kabel server, wajah polos tak berdosa -->
+      <div class="cat-illust ">
+        <img src="https://images-platform.99static.com/xVNO31J8kR8GDQGH_nJig1evK9E=/500x500/top/smart/99designs-contests-attachments/14/14592/attachment_14592126" alt="Kucing nyangkut di kabel server">
+      </div>
+
+      <div class="quote-box ">
+        <p class="quote-main">"Kucing kami tidak sengaja menginjak kabel server."</p>
+        <p class="quote-sub">Kami sedang membujuknya  dengan makanan basah. Mohon tunggu sebentar!</p>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+
+      <div class="dots">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="footer-note">© <span id="year"></span> Codenest.id — akan kembali segera</div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * generateStars()
+     * Fungsi kecil untuk membuat elemen bintang secara acak di background.
+     * Tujuannya cuma dekorasi (efek "space/tech" di belakang kartu).
+     */
+    function generateStars(count) {
+      console.log(`[maintenance-page] generating ${count} stars`); // debug log jumlah bintang
+      const container = document.getElementById('stars');
+      if (!container) {
+        console.warn('[maintenance-page] #stars container tidak ditemukan'); // debug kalau elemen hilang
+        return;
+      }
+
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+
+        // posisi acak dalam persen, biar responsive di semua ukuran layar
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+
+        // durasi & delay animasi acak biar kedip-kedipnya tidak seragam
+        const duration = 2 + Math.random() * 3; // 2s - 5s
+        const delay = Math.random() * 3;        // 0s - 3s
+        star.style.animationDuration = `${duration}s`;
+        star.style.animationDelay = `${delay}s`;
+
+        container.appendChild(star);
+      }
+    }
+
+    /**
+     * setFooterYear()
+     * Isi tahun otomatis di footer supaya tidak perlu update manual tiap tahun.
+     */
+    function setFooterYear() {
+      const yearEl = document.getElementById('year');
+      const currentYear = new Date().getFullYear();
+      console.log('[maintenance-page] set footer year =', currentYear); // debug nilai tahun
+      if (yearEl) yearEl.textContent = currentYear;
+    }
+
+    // ===== Jalankan semua fungsi setelah halaman siap =====
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('[maintenance-page] DOM ready, initializing...'); // log awal init
+      generateStars(60);   // jumlah bintang bisa diubah sesuai selera
+      setFooterYear();
+    });
+  </script>
+
+</body>
+</html>
