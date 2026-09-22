@@ -14,9 +14,12 @@
 
   // Pakai routes (bukan custom_domain) karena DNS domain
   // masih menunjuk ke origin server kamu (harus Proxied / awan oranye)
-  "routes": [
-    { "pattern": "codenest.id/*", "zone_name": "codenest.id" },
-    { "pattern": "www.codenest.id/*", "zone_name": "codenest.id" }
+    "routes": [
+    { "pattern": "codenest.id/*",       "zone_name": "codenest.id" },
+    { "pattern": "www.codenest.id/*",   "zone_name": "codenest.id" },
+    { "pattern": "log.codenest.id/*",   "zone_name": "codenest.id" },
+    { "pattern": "api.codenest.id/*",   "zone_name": "codenest.id" },
+    { "pattern": "quran.codenest.id/*", "zone_name": "codenest.id" }
   ],
 
   "vars": {
